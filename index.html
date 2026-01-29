@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAMA CROCHET ♡ | Sky Creation</title>
+  <meta name="description" content="منتجات كروشيه يدوية - سلاسل مفاتيح، ورود، دمى وإكسسوارات مصنوعة بحب ♡">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="images/logo.png" alt="SAMA CROCHET ♡" class="logo-img">
+  </div>
+  <button id="cartBtn" class="icon-btn" aria-label="السلة">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartCount">0</span>
+  </button>
+</header>
+
+<section class="hero">
+  <h1>SAMA CROCHET ♡</h1>
+  <p>صنع يدوي بحب • ورود • سلاسل مفاتيح • دمى • إكسسوارات</p>
+</section>
+
+<section class="filters">
+  <button class="filter-btn active" data-category="all">الكل</button>
+ <button class="filter-btn" data-category="Keychains">سلاسل مفاتيح</button>
+ <button class="filter-btn" data-category="Dolls">دمى</button>
+ <button class="filter-btn" data-category="Flowers">ورود</button>
+  <button class="filter-btn" data-category="Accessories">إكسسوارات</button>
+</section>
+
+<section class="products" id="allProducts"></section>
+
+<!-- Modal المنتج -->
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <span class="close" aria-label="إغلاق">&times;</span>
+    <img id="modalImg" alt="">
+    <h3 id="modalName"></h3>
+    <p id="modalDesc"></p>
+    <div class="price"><span id="modalPrice"></span> درهم</div>
+    <button id="addToCartBtn">أضف إلى السلة ♡</button>
+  </div>
+</div>
+<section class="policies" style="padding: 50px 20px; text-align: center; background: rgba(20,15,40,0.6);">
+  <h2 style="margin-bottom: 30px; color: var(--primary-light); font-size: 2.2rem;">سياسات المتجر ♡</h2>
+  <div style="max-width: 900px; margin: 0 auto; line-height: 2; font-size: 1.15rem; display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+    <div>
+      <p><strong>💳 الدفع عند الاستلام</strong></p>
+      <p>ندعم الدفع عند استلام الطلب في جميع المدن المغربية (نقداً).</p>
+    </div>
+    <div>
+      <p><strong>🔄 سياسة التبديل والإرجاع</strong></p>
+      <p>يمكن تبديل أو إرجاع المنتج خلال 7 أيام من الاستلام بشرط أن يكون بحالته الأصلية وغير مستخدم. اتصل بنا عبر واتساب لترتيب الإرجاع.</p>
+    </div>
+    <div>
+      <p><strong>🚚 التوصيل</strong></p>
+      <p>التوصيل خلال 2-5 أيام عمل داخل المغرب، التكلفة حسب المدينة.</p>
+    </div>
+    <div>
+      <p><strong>📦 التغليف</strong></p>
+      <p>جميع الطلبات تُغلف بعناية مع لمسة هدية صغيرة ♡</p>
+    </div>
+  </div>
+</section>
+<!-- Modal السلة -->
+<div class="modal" id="cartModal">
+  <div class="modal-content">
+    <span class="close" aria-label="إغلاق">&times;</span>
+    <h3>سلة التسوق ♡</h3>
+    <div id="cartItems"></div>
+    <div class="cart-total">الإجمالي: <span id="cartTotalAmount">0</span> درهم</div>
+
+    <div id="orderForm" style="display:none; margin-top:24px;">
+  <h4>معلومات الطلب</h4>
+  
+  <input 
+    type="text" 
+    id="customerName" 
+    placeholder="الاسم الكامل *" 
+    required 
+    aria-required="true"
+  >
+  
+  <input 
+    type="tel" 
+    id="customerPhone" 
+    placeholder="رقم الهاتف *" 
+    required 
+    aria-required="true"
+    pattern="[0-9]{9,12}"
+    title="أدخل رقم هاتف صحيح (9-12 رقم)"
+  >
+  
+  <input 
+    type="text" 
+    id="customerCity" 
+    placeholder="المدينة *" 
+    required 
+    aria-required="true"
+  >
+  
+  <textarea 
+    id="customerAddress" 
+    placeholder="العنوان التفصيلي (شارع - رقم المنزل - الحي ...)*" 
+    required 
+    aria-required="true"
+  ></textarea>
+  
+  <textarea 
+    id="customerNotes" 
+    placeholder="ملاحظات إضافية (اختياري - مثال: تسليم بعد الساعة 6 مساءً)"
+  ></textarea>
+</div>
+
+    <button id="showOrderFormBtn">إتمام الطلب</button>
+    <button id="confirmOrderBtn" style="display:none;">إرسال الطلب عبر واتساب</button>
+  </div>
+</div>
+
+<button id="backToTop" class="back-to-top" aria-label="للأعلى"><i class="fas fa-arrow-up"></i></button>
+
+<script src="script.js"></script>
+</body>
+</html>
